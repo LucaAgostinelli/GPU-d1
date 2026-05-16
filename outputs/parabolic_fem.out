@@ -1,0 +1,128 @@
+---------------- running SCALAR ----------------
+Kernel (SCALAR):
+  eff BW: 577.61 GB/s  (61.9% of peak 933 GB/s)
+
+  avg: 0.061819 ms
+  min: 0.060416 ms
+  max: 0.063488 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/parabolic_fem.mtx,525825,525825,3674625,SCALAR,0.061819,0.060416,0.063488,0.000000958,118.883578,577.6051,61.90
+---------------- running S-V-ADAPTIVE ----------------
+GPU SpMV (S-V-ADAPTIVE - two-kernel):
+  SHORT_THRESHOLD = 32
+  short rows (scalar kernel): 525825  (100.0%)
+  long  rows (vector   kernel): 0  (0.0%)
+Kernel (S-V-ADAPTIVE):
+  eff BW: 512.41 GB/s  (54.9% of peak 933 GB/s)
+
+  avg: 0.073789 ms
+  min: 0.070656 ms
+  max: 0.077824 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/parabolic_fem.mtx,525825,525825,3674625,S-V-ADAPTIVE,0.073789,0.070656,0.077824,0.000001759,99.597585,512.4067,54.91
+---------------- running LINE ----------------
+GPU SpMV (LINE-ENHANCE):
+  avg NNZ/row: 6.99 --> V=1, rows_per_wg=512
+  THREADS=512, R=2, N_SHARED=1024, WGS=1028
+Kernel (LINE-ENHANCE):
+  eff BW: 464.69 GB/s  (49.8% of peak 933 GB/s)
+
+  avg: 0.076841 ms
+  min: 0.074752 ms
+  max: 0.078848 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/parabolic_fem.mtx,525825,525825,3674625,LINE,0.076841,0.074752,0.078848,0.000000628,95.642351,464.6858,49.80
+---------------- running FLAT ----------------
+GPU SpMV (FLAT):
+  WGS (blocks):            3589
+  N (NNZ per WG):          1024 (R=4, THREADS=256)
+
+  [Preprocessing]
+  time:                    0.117760 ms
+
+  [Kernel]
+  avg:                     0.061123 ms
+  min:                     0.059392 ms
+  max:                     0.062464 ms
+
+  variance:                0.000000 ms*ms
+
+  [End-to-end]
+  preprocess + avg kernel: 0.178883 ms
+  preprocess weight on total time: 65.830894 %
+Kernel (FLAT (end-to-end)):
+  eff BW: 211.53 GB/s  (22.7% of peak 933 GB/s)
+
+  avg: 0.178883 ms
+  min: 0.177152 ms
+  max: 0.180224 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/parabolic_fem.mtx,525825,525825,3674625,FLAT,0.178883,0.177152,0.180224,0.000000412,41.084212,211.5294,22.67
+---------------- running ACC ----------------
+  [ACC -> LINE]
+GPU SpMV (LINE-ENHANCE):
+  avg NNZ/row: 6.99 --> V=1, rows_per_wg=512
+  THREADS=512, R=2, N_SHARED=1024, WGS=1028
+Kernel (LINE-ENHANCE):
+  eff BW: 447.22 GB/s  (47.9% of peak 933 GB/s)
+
+  avg: 0.079841 ms
+  min: 0.077824 ms
+  max: 0.081920 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/parabolic_fem.mtx,525825,525825,3674625,ACC,0.079841,0.077824,0.081920,0.000000561,92.048276,447.2237,47.93
+---------------- running ELL ----------------
+GPU SpMV (ELL):
+  max_col (padded cols):   7
+  ELL total slots:         3680775
+  ELL memory (col+val):    29.4 MB
+  fill ratio:              0.998  (OK)
+Kernel (ELL):
+  eff BW: 641.88 GB/s  (68.8% of peak 933 GB/s)
+
+  avg: 0.052429 ms
+  min: 0.051200 ms
+  max: 0.053248 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/parabolic_fem.mtx,525825,525825,3674625,ELL,0.052429,0.051200,0.053248,0.000000252,140.175828,641.8763,68.79
+---------------- running HYB ----------------
+GPU SpMV (HYB - ELL + COO):
+  ELL width K:            7
+  ELL total slots:        3680775
+  ELL memory (col+val):   28 MB
+  ELL NNZs (real):        3674625  (100.0%)
+  COO NNZs (overflow):    0  (0.0%)
+  ELL fill ratio:         0.998
+
+  [Kernel]
+  ELL: BLOCK=256 GRID=2055
+  COO: BLOCK=256 GRID=0
+
+Kernel (HYBRID):
+  eff BW: 655.19 GB/s  (70.2% of peak 933 GB/s)
+
+  avg: 0.051364 ms
+  min: 0.050176 ms
+  max: 0.052224 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/parabolic_fem.mtx,525825,525825,3674625,HYB,0.051364,0.050176,0.052224,0.000000250,143.082257,655.1850,70.21
+---------------- running cuSPARSE ----------------
+GPU SpMV (cuSPARSE - SPMV_ALG_DEFAULT / CSR):
+  workspace:  7184 bytes
+
+Kernel (cuSPARSE):
+  eff BW: 471.92 GB/s  (50.6% of peak 933 GB/s)
+
+  avg: 0.075663 ms
+  min: 0.073728 ms
+  max: 0.077824 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/parabolic_fem.mtx,525825,525825,3674625,cuSPARSE,0.075663,0.073728,0.077824,0.000000586,97.130861,471.9179,50.57

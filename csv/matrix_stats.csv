@@ -1,0 +1,11 @@
+type  , path                                                           , nrows  , ncols  , nnz     , symmetric, parse_time, avg_nnz   , min_row_nnz, max_row_nnz, std_nnz   , imbalance
+MATRIX, /home/luca.agostinelli/Deliverable_1/matrices/amazon0302.mtx   ,  262111,  262111,   823251,         0,   0.235265,   3.140849,           0,         142,   2.259066,    45.210712
+MATRIX, /home/luca.agostinelli/Deliverable_1/matrices/ASIC_680k.mtx    ,  682862,  682862,  3871773,         0,   1.466793,   5.669920,           1,      395259, 659.807312, 69711.562500
+MATRIX, /home/luca.agostinelli/Deliverable_1/matrices/cage13.mtx       ,  445315,  445315,  7479343,         0,   2.938776,  16.795624,           3,          39,   5.128390,     2.322033
+MATRIX, /home/luca.agostinelli/Deliverable_1/matrices/cit-Patents.mtx  , 3774768, 3774768, 11012632,         0,   3.339417,   2.917433,           0,         267,   3.654116,    91.518822
+MATRIX, /home/luca.agostinelli/Deliverable_1/matrices/crankseg_2.mtx   ,   63838,   63838, 14148858,         1,   3.201679, 221.636917,          48,        3423,  95.875732,    15.444178
+MATRIX, /home/luca.agostinelli/Deliverable_1/matrices/parabolic_fem.mtx,  525825,  525825,  3674625,         1,   0.994111,   6.988304,           3,           7,   0.152631,     1.001674
+MATRIX, /home/luca.agostinelli/Deliverable_1/matrices/poisson3Da.mtx   ,   13514,   13514,   352762,         0,   0.179452,  26.103449,           6,         110,  13.764477,     4.214003
+MATRIX, /home/luca.agostinelli/Deliverable_1/matrices/roadNet-CA.mtx   , 1971281, 1971281,  3688810,         1,   0.604791,   1.871276,           0,           7,   0.935724,     3.740764
+MATRIX, /home/luca.agostinelli/Deliverable_1/matrices/thermal2.mtx     , 1228045, 1228045,  8580313,         1,   2.387168,   6.986969,           1,          11,   0.811405,     1.574359
+MATRIX, /home/luca.agostinelli/Deliverable_1/matrices/webbase-1M.mtx   , 1000005, 1000005,  3105536,         0,   0.959508,   3.105520,           1,        4700,  25.345209,  1513.433960

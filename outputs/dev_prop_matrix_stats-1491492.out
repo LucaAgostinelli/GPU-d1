@@ -1,0 +1,21 @@
+================ GPU INFO ================
+Number of CUDA devices: 1
+
+=== Device 0 ===
+Major revision number:         8
+Minor revision number:         0
+Name:                          NVIDIA A30
+  Memory Clock rate:           1215 MHz
+  Memory Bus Width:            3072 bit
+  Peak Memory Bandwidth:       933.120 GB/s
+  Multiprocessors:              56
+  Maximum number of threads per multiprocessor:  2048
+  Maximum number of threads per block:           1024
+  Max dimension size of a thread block (x,y,z): (1024, 1024, 64)
+  Max dimension size of a grid size    (x,y,z): (2147483647, 65535, 65535)
+  Total amount of shared memory per block:       49152 bytes
+
+==========================================
+Running matrix statistics...
+DONE
+CSV saved to: csv/matrix_stats.csv

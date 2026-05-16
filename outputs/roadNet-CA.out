@@ -1,0 +1,140 @@
+---------------- running SCALAR ----------------
+Kernel (SCALAR):
+  eff BW: 486.32 GB/s  (52.1% of peak 933 GB/s)
+
+  avg: 0.109322 ms
+  min: 0.108544 ms
+  max: 0.110592 ms
+
+[ERROR CHECKING] Mismatch at index 411023: CPU = 0.437500, GPU = 0.450083
+[ERROR CHECKING] Mismatch at index 1667806: CPU = -0.437500, GPU = -0.452290
+[ERROR CHECKING] Mismatch at index 1802497: CPU = 2.000000, GPU = 1.977481
+[ERROR CHECKING] Total mismatches: 3
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/roadNet-CA.mtx,1971281,1971281,3688810,SCALAR,0.109322,0.108544,0.110592,0.000000232,67.485077,486.3224,52.12
+---------------- running S-V-ADAPTIVE ----------------
+GPU SpMV (S-V-ADAPTIVE - two-kernel):
+  SHORT_THRESHOLD = 32
+  short rows (scalar kernel): 1971281  (100.0%)
+  long  rows (vector   kernel): 0  (0.0%)
+Kernel (S-V-ADAPTIVE):
+  eff BW: 509.75 GB/s  (54.6% of peak 933 GB/s)
+
+  avg: 0.119767 ms
+  min: 0.118784 ms
+  max: 0.120832 ms
+
+[ERROR CHECKING] Mismatch at index 411023: CPU = 0.437500, GPU = 0.450083
+[ERROR CHECKING] Mismatch at index 1667806: CPU = -0.437500, GPU = -0.452290
+[ERROR CHECKING] Mismatch at index 1802497: CPU = 2.000000, GPU = 1.977481
+[ERROR CHECKING] Total mismatches: 3
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/roadNet-CA.mtx,1971281,1971281,3688810,S-V-ADAPTIVE,0.119767,0.118784,0.120832,0.000000205,61.599699,509.7473,54.63
+---------------- running LINE ----------------
+GPU SpMV (LINE-ENHANCE):
+  avg NNZ/row: 1.87 --> V=1, rows_per_wg=512
+  THREADS=512, R=2, N_SHARED=1024, WGS=3851
+Kernel (LINE-ENHANCE):
+  eff BW: 456.96 GB/s  (49.0% of peak 933 GB/s)
+
+  avg: 0.116347 ms
+  min: 0.115712 ms
+  max: 0.117760 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/roadNet-CA.mtx,1971281,1971281,3688810,LINE,0.116347,0.115712,0.117760,0.000000305,63.410496,456.9595,48.97
+---------------- running FLAT ----------------
+GPU SpMV (FLAT):
+  WGS (blocks):            3603
+  N (NNZ per WG):          1024 (R=4, THREADS=256)
+
+  [Preprocessing]
+  time:                    0.142336 ms
+
+  [Kernel]
+  avg:                     0.095396 ms
+  min:                     0.094208 ms
+  max:                     0.096256 ms
+
+  variance:                0.000000 ms*ms
+
+  [End-to-end]
+  preprocess + avg kernel: 0.237732 ms
+  preprocess weight on total time: 59.872501 %
+Kernel (FLAT (end-to-end)):
+  eff BW: 256.93 GB/s  (27.5% of peak 933 GB/s)
+
+  avg: 0.237732 ms
+  min: 0.236544 ms
+  max: 0.238592 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/roadNet-CA.mtx,1971281,1971281,3688810,FLAT,0.237732,0.236544,0.238592,0.000000318,31.033371,256.9273,27.53
+---------------- running ACC ----------------
+  [ACC -> LINE]
+GPU SpMV (LINE-ENHANCE):
+  avg NNZ/row: 1.87 --> V=1, rows_per_wg=512
+  THREADS=512, R=2, N_SHARED=1024, WGS=3851
+Kernel (LINE-ENHANCE):
+  eff BW: 456.28 GB/s  (48.9% of peak 933 GB/s)
+
+  avg: 0.116521 ms
+  min: 0.115712 ms
+  max: 0.117760 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/roadNet-CA.mtx,1971281,1971281,3688810,ACC,0.116521,0.115712,0.117760,0.000000280,63.315780,456.2769,48.90
+---------------- running ELL ----------------
+GPU SpMV (ELL):
+  max_col (padded cols):   7
+  ELL total slots:         13798967
+  ELL memory (col+val):    110.4 MB
+  fill ratio:              0.267  (WARNING: low fill, ELL wastes memory)
+  [ELL] fill ratio 0.267 < threshold 0.500 - consider HYB instead
+Kernel (ELL):
+  eff BW: 730.88 GB/s  (78.3% of peak 933 GB/s)
+
+  avg: 0.172616 ms
+  min: 0.168960 ms
+  max: 0.177152 ms
+
+[ERROR CHECKING] Mismatch at index 411023: CPU = 0.437500, GPU = 0.450083
+[ERROR CHECKING] Mismatch at index 1667806: CPU = -0.437500, GPU = -0.452290
+[ERROR CHECKING] Mismatch at index 1802497: CPU = 2.000000, GPU = 1.977481
+[ERROR CHECKING] Total mismatches: 3
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/roadNet-CA.mtx,1971281,1971281,3688810,ELL,0.172616,0.168960,0.177152,0.000002710,42.740150,730.8837,78.33
+---------------- running HYB ----------------
+GPU SpMV (HYB - ELL + COO):
+  ELL width K:            2
+  ELL total slots:        3942562
+  ELL memory (col+val):   30 MB
+  ELL NNZs (real):        3134225  (85.0%)
+  COO NNZs (overflow):    554585  (15.0%)
+  ELL fill ratio:         0.795
+
+  [Kernel]
+  ELL: BLOCK=256 GRID=7701
+  COO: BLOCK=256 GRID=2167
+
+Kernel (HYBRID):
+  eff BW: 479.76 GB/s  (51.4% of peak 933 GB/s)
+
+  avg: 0.121733 ms
+  min: 0.119808 ms
+  max: 0.122880 ms
+
+[ERROR CHECKING] Mismatch at index 1667806: CPU = -0.437500, GPU = -0.452290
+[ERROR CHECKING] Mismatch at index 1802497: CPU = 2.000000, GPU = 1.977481
+[ERROR CHECKING] Total mismatches: 2
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/roadNet-CA.mtx,1971281,1971281,3688810,HYB,0.121733,0.119808,0.122880,0.000000348,60.604855,479.7579,51.41
+---------------- running cuSPARSE ----------------
+GPU SpMV (cuSPARSE - SPMV_ALG_DEFAULT / CSR):
+  workspace:  7212 bytes
+
+Kernel (cuSPARSE):
+  eff BW: 469.73 GB/s  (50.3% of peak 933 GB/s)
+
+  avg: 0.113183 ms
+  min: 0.111616 ms
+  max: 0.115712 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/roadNet-CA.mtx,1971281,1971281,3688810,cuSPARSE,0.113183,0.111616,0.115712,0.000000760,65.183257,469.7346,50.34

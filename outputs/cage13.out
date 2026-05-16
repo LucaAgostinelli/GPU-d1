@@ -1,0 +1,144 @@
+---------------- running SCALAR ----------------
+Kernel (SCALAR):
+  eff BW: 447.49 GB/s  (48.0% of peak 933 GB/s)
+
+  avg: 0.145654 ms
+  min: 0.141312 ms
+  max: 0.152576 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/cage13.mtx,445315,445315,7479343,SCALAR,0.145654,0.141312,0.152576,0.000005700,102.700291,447.4894,47.96
+---------------- running S-V-ADAPTIVE ----------------
+GPU SpMV (S-V-ADAPTIVE - two-kernel):
+  SHORT_THRESHOLD = 32
+  short rows (scalar kernel): 441847  (99.2%)
+  long  rows (vector   kernel): 3468  (0.8%)
+Kernel (S-V-ADAPTIVE):
+  eff BW: 440.90 GB/s  (47.3% of peak 933 GB/s)
+
+  avg: 0.151869 ms
+  min: 0.148480 ms
+  max: 0.158720 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/cage13.mtx,445315,445315,7479343,S-V-ADAPTIVE,0.151869,0.148480,0.158720,0.000003194,98.496979,440.9035,47.25
+---------------- running LINE ----------------
+GPU SpMV (LINE-ENHANCE):
+  avg NNZ/row: 16.80 --> V=2, rows_per_wg=256
+  THREADS=512, R=2, N_SHARED=1024, WGS=1740
+Kernel (LINE-ENHANCE):
+  eff BW: 490.30 GB/s  (52.5% of peak 933 GB/s)
+
+  avg: 0.132936 ms
+  min: 0.130048 ms
+  max: 0.135168 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/cage13.mtx,445315,445315,7479343,LINE,0.132936,0.130048,0.135168,0.000001203,112.525798,490.3015,52.54
+---------------- running FLAT ----------------
+GPU SpMV (FLAT):
+  WGS (blocks):            7305
+  N (NNZ per WG):          1024 (R=4, THREADS=256)
+
+  [Preprocessing]
+  time:                    0.128000 ms
+
+  [Kernel]
+  avg:                     0.112476 ms
+  min:                     0.110592 ms
+  max:                     0.114688 ms
+
+  variance:                0.000001 ms*ms
+
+  [End-to-end]
+  preprocess + avg kernel: 0.240476 ms
+  preprocess weight on total time: 53.227722 %
+Kernel (FLAT (end-to-end)):
+  eff BW: 278.69 GB/s  (29.9% of peak 933 GB/s)
+
+  avg: 0.240476 ms
+  min: 0.238592 ms
+  max: 0.242688 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/cage13.mtx,445315,445315,7479343,FLAT,0.240476,0.238592,0.242688,0.000001099,62.204437,278.6897,29.87
+---------------- running ACC ----------------
+  [ACC -> FLAT: imbalance=2.3 > 32 || avg_nnz=16.8 > 8]
+  [ACC -> FLAT]
+GPU SpMV (FLAT):
+  WGS (blocks):            7305
+  N (NNZ per WG):          1024 (R=4, THREADS=256)
+
+  [Preprocessing]
+  time:                    0.135168 ms
+
+  [Kernel]
+  avg:                     0.116521 ms
+  min:                     0.114688 ms
+  max:                     0.119808 ms
+
+  variance:                0.000001 ms*ms
+
+  [End-to-end]
+  preprocess + avg kernel: 0.251689 ms
+  preprocess weight on total time: 53.704369 %
+Kernel (FLAT (end-to-end)):
+  eff BW: 266.27 GB/s  (28.5% of peak 933 GB/s)
+
+  avg: 0.251689 ms
+  min: 0.249856 ms
+  max: 0.254976 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/cage13.mtx,445315,445315,7479343,ACC,0.251689,0.249856,0.254976,0.000001123,59.433209,266.2740,28.54
+---------------- running ELL ----------------
+GPU SpMV (ELL):
+  max_col (padded cols):   39
+  ELL total slots:         17367285
+  ELL memory (col+val):    138.9 MB
+  fill ratio:              0.431  (WARNING: low fill, ELL wastes memory)
+  [ELL] fill ratio 0.431 < threshold 0.500 - consider HYB instead
+Kernel (ELL):
+  eff BW: 765.59 GB/s  (82.0% of peak 933 GB/s)
+
+  avg: 0.186133 ms
+  min: 0.183296 ms
+  max: 0.189440 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/cage13.mtx,445315,445315,7479343,ELL,0.186133,0.183296,0.189440,0.000001907,80.365765,765.5877,82.05
+---------------- running HYB ----------------
+GPU SpMV (HYB - ELL + COO):
+  ELL width K:            19
+  ELL total slots:        8460985
+  ELL memory (col+val):   64 MB
+  ELL NNZs (real):        6958131  (93.0%)
+  COO NNZs (overflow):    521212  (7.0%)
+  ELL fill ratio:         0.822
+
+  [Kernel]
+  ELL: BLOCK=256 GRID=1740
+  COO: BLOCK=256 GRID=2036
+
+Kernel (HYBRID):
+  eff BW: 655.33 GB/s  (70.2% of peak 933 GB/s)
+
+  avg: 0.124631 ms
+  min: 0.122880 ms
+  max: 0.126976 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/cage13.mtx,445315,445315,7479343,HYB,0.124631,0.122880,0.126976,0.000000560,120.023695,655.3311,70.23
+---------------- running cuSPARSE ----------------
+GPU SpMV (cuSPARSE - SPMV_ALG_DEFAULT / CSR):
+  workspace:  14616 bytes
+
+Kernel (cuSPARSE):
+  eff BW: 538.23 GB/s  (57.7% of peak 933 GB/s)
+
+  avg: 0.121098 ms
+  min: 0.119808 ms
+  max: 0.122880 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/cage13.mtx,445315,445315,7479343,cuSPARSE,0.121098,0.119808,0.122880,0.000000716,123.525166,538.2283,57.68

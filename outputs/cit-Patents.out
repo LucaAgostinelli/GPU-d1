@@ -1,0 +1,146 @@
+---------------- running SCALAR ----------------
+Kernel (SCALAR):
+  eff BW: 222.94 GB/s  (23.9% of peak 933 GB/s)
+
+  avg: 0.598364 ms
+  min: 0.594944 ms
+  max: 0.601088 ms
+
+[ERROR CHECKING] Mismatch at index 3241725: CPU = 3.375000, GPU = 3.278724
+[ERROR CHECKING] Total mismatches: 1
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/cit-Patents.mtx,3774768,3774768,11012632,SCALAR,0.598364,0.594944,0.601088,0.000002146,36.809133,222.9383,23.89
+---------------- running S-V-ADAPTIVE ----------------
+GPU SpMV (S-V-ADAPTIVE - two-kernel):
+  SHORT_THRESHOLD = 32
+  short rows (scalar kernel): 3769988  (99.9%)
+  long  rows (vector   kernel): 4780  (0.1%)
+Kernel (S-V-ADAPTIVE):
+  eff BW: 239.23 GB/s  (25.6% of peak 933 GB/s)
+
+  avg: 0.620739 ms
+  min: 0.618496 ms
+  max: 0.623616 ms
+
+[ERROR CHECKING] Mismatch at index 3241725: CPU = 3.375000, GPU = 3.278724
+[ERROR CHECKING] Total mismatches: 1
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/cit-Patents.mtx,3774768,3774768,11012632,S-V-ADAPTIVE,0.620739,0.618496,0.623616,0.000000924,35.482352,239.2269,25.64
+---------------- running LINE ----------------
+GPU SpMV (LINE-ENHANCE):
+  avg NNZ/row: 2.92 --> V=1, rows_per_wg=512
+  THREADS=512, R=2, N_SHARED=1024, WGS=7373
+Kernel (LINE-ENHANCE):
+  eff BW: 242.14 GB/s  (25.9% of peak 933 GB/s)
+
+  avg: 0.550912 ms
+  min: 0.547840 ms
+  max: 0.553984 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/cit-Patents.mtx,3774768,3774768,11012632,LINE,0.550912,0.547840,0.553984,0.000001460,39.979631,242.1407,25.95
+---------------- running FLAT ----------------
+GPU SpMV (FLAT):
+  WGS (blocks):            10755
+  N (NNZ per WG):          1024 (R=4, THREADS=256)
+
+  [Preprocessing]
+  time:                    0.203776 ms
+
+  [Kernel]
+  avg:                     0.511652 ms
+  min:                     0.509952 ms
+  max:                     0.514048 ms
+
+  variance:                0.000001 ms*ms
+
+  [End-to-end]
+  preprocess + avg kernel: 0.715428 ms
+  preprocess weight on total time: 28.483099 %
+Kernel (FLAT (end-to-end)):
+  eff BW: 207.68 GB/s  (22.3% of peak 933 GB/s)
+
+  avg: 0.715428 ms
+  min: 0.713728 ms
+  max: 0.717824 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/cit-Patents.mtx,3774768,3774768,11012632,FLAT,0.715428,0.713728,0.717824,0.000000685,30.786144,207.6847,22.26
+---------------- running ACC ----------------
+  [ACC -> FLAT: imbalance=91.5 > 32 || avg_nnz=2.9 > 8]
+  [ACC -> FLAT]
+GPU SpMV (FLAT):
+  WGS (blocks):            10755
+  N (NNZ per WG):          1024 (R=4, THREADS=256)
+
+  [Preprocessing]
+  time:                    0.205824 ms
+
+  [Kernel]
+  avg:                     0.511754 ms
+  min:                     0.509952 ms
+  max:                     0.514048 ms
+
+  variance:                0.000001 ms*ms
+
+  [End-to-end]
+  preprocess + avg kernel: 0.717578 ms
+  preprocess weight on total time: 28.683142 %
+Kernel (FLAT (end-to-end)):
+  eff BW: 207.06 GB/s  (22.2% of peak 933 GB/s)
+
+  avg: 0.717578 ms
+  min: 0.715776 ms
+  max: 0.719872 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/cit-Patents.mtx,3774768,3774768,11012632,ACC,0.717578,0.715776,0.719872,0.000000685,30.693883,207.0623,22.19
+---------------- running ELL ----------------
+GPU SpMV (ELL):
+  [ELL] SKIPPED - max_col * nrows would exceed memory limit.
+  This matrix has a highly skewed NNZ distribution (power-law).
+  Use HYB (ELL + COO) instead.
+
+Kernel (ELL):
+  eff BW: 0.00 GB/s  (0.0% of peak 933 GB/s)
+
+  avg: -1.000000 ms
+  min: -1.000000 ms
+  max: -1.000000 ms
+
+---------------- running HYB ----------------
+GPU SpMV (HYB - ELL + COO):
+  ELL width K:            3
+  ELL total slots:        11324304
+  ELL memory (col+val):   86 MB
+  ELL NNZs (real):        6714751  (61.0%)
+  COO NNZs (overflow):    4297881  (39.0%)
+  ELL fill ratio:         0.593
+
+  [Kernel]
+  ELL: BLOCK=256 GRID=14746
+  COO: BLOCK=256 GRID=16789
+
+Kernel (HYBRID):
+  eff BW: 276.15 GB/s  (29.6% of peak 933 GB/s)
+
+  avg: 0.748677 ms
+  min: 0.745472 ms
+  max: 0.751616 ms
+
+[ERROR CHECKING] Mismatch at index 3241725: CPU = 3.375000, GPU = 3.250000
+[ERROR CHECKING] Total mismatches: 1
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/cit-Patents.mtx,3774768,3774768,11012632,HYB,0.748677,0.745472,0.751616,0.000001431,29.418913,276.1541,29.59
+---------------- running cuSPARSE ----------------
+GPU SpMV (cuSPARSE - SPMV_ALG_DEFAULT / CSR):
+  workspace:  21516 bytes
+
+Kernel (cuSPARSE):
+  eff BW: 232.56 GB/s  (24.9% of peak 933 GB/s)
+
+  avg: 0.573604 ms
+  min: 0.571392 ms
+  max: 0.577536 ms
+
+[ERROR CHECKING] Mismatch at index 1117854: CPU = -22.750000, GPU = -22.500000
+[ERROR CHECKING] Mismatch at index 1551112: CPU = -1.352539, GPU = -1.375000
+[ERROR CHECKING] Total mismatches: 2
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/cit-Patents.mtx,3774768,3774768,11012632,cuSPARSE,0.573604,0.571392,0.577536,0.000001788,38.398051,232.5617,24.92

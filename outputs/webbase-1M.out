@@ -1,0 +1,141 @@
+---------------- running SCALAR ----------------
+Kernel (SCALAR):
+  eff BW: 55.64 GB/s  (6.0% of peak 933 GB/s)
+
+  avg: 0.662190 ms
+  min: 0.655360 ms
+  max: 0.671744 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/webbase-1M.mtx,1000005,1000005,3105536,SCALAR,0.662190,0.655360,0.671744,0.000018358,9.379593,55.6402,5.96
+---------------- running S-V-ADAPTIVE ----------------
+GPU SpMV (S-V-ADAPTIVE - two-kernel):
+  SHORT_THRESHOLD = 32
+  short rows (scalar kernel): 994175  (99.4%)
+  long  rows (vector   kernel): 5830  (0.6%)
+Kernel (S-V-ADAPTIVE):
+  eff BW: 372.46 GB/s  (39.9% of peak 933 GB/s)
+
+  avg: 0.109660 ms
+  min: 0.108544 ms
+  max: 0.111616 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/webbase-1M.mtx,1000005,1000005,3105536,S-V-ADAPTIVE,0.109660,0.108544,0.111616,0.000000760,56.639285,372.4632,39.92
+---------------- running LINE ----------------
+GPU SpMV (LINE-ENHANCE):
+  avg NNZ/row: 3.11 --> V=1, rows_per_wg=512
+  THREADS=512, R=2, N_SHARED=1024, WGS=1954
+Kernel (LINE-ENHANCE):
+  eff BW: 37.32 GB/s  (4.0% of peak 933 GB/s)
+
+  avg: 0.987351 ms
+  min: 0.985088 ms
+  max: 0.990208 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/webbase-1M.mtx,1000005,1000005,3105536,LINE,0.987351,0.985088,0.990208,0.000000894,6.290641,37.3164,4.00
+---------------- running FLAT ----------------
+GPU SpMV (FLAT):
+  WGS (blocks):            3033
+  N (NNZ per WG):          1024 (R=4, THREADS=256)
+
+  [Preprocessing]
+  time:                    0.135168 ms
+
+  [Kernel]
+  avg:                     0.065208 ms
+  min:                     0.064512 ms
+  max:                     0.066560 ms
+
+  variance:                0.000000 ms*ms
+
+  [End-to-end]
+  preprocess + avg kernel: 0.200376 ms
+  preprocess weight on total time: 67.457077 %
+Kernel (FLAT (end-to-end)):
+  eff BW: 203.96 GB/s  (21.9% of peak 933 GB/s)
+
+  avg: 0.200376 ms
+  min: 0.199680 ms
+  max: 0.201728 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/webbase-1M.mtx,1000005,1000005,3105536,FLAT,0.200376,0.199680,0.201728,0.000000273,30.997039,203.9594,21.86
+---------------- running ACC ----------------
+  [ACC -> FLAT: imbalance=1513.4 > 32 || avg_nnz=3.1 > 8]
+  [ACC -> FLAT]
+GPU SpMV (FLAT):
+  WGS (blocks):            3033
+  N (NNZ per WG):          1024 (R=4, THREADS=256)
+
+  [Preprocessing]
+  time:                    0.120832 ms
+
+  [Kernel]
+  avg:                     0.066396 ms
+  min:                     0.065536 ms
+  max:                     0.067584 ms
+
+  variance:                0.000000 ms*ms
+
+  [End-to-end]
+  preprocess + avg kernel: 0.187228 ms
+  preprocess weight on total time: 64.537315 %
+Kernel (FLAT (end-to-end)):
+  eff BW: 218.28 GB/s  (23.4% of peak 933 GB/s)
+
+  avg: 0.187228 ms
+  min: 0.186368 ms
+  max: 0.188416 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/webbase-1M.mtx,1000005,1000005,3105536,ACC,0.187228,0.186368,0.188416,0.000000190,33.173821,218.2826,23.39
+---------------- running ELL ----------------
+GPU SpMV (ELL):
+  [ELL] SKIPPED - max_col * nrows would exceed memory limit.
+  This matrix has a highly skewed NNZ distribution (power-law).
+  Use HYB (ELL + COO) instead.
+
+Kernel (ELL):
+  eff BW: 0.00 GB/s  (0.0% of peak 933 GB/s)
+
+  avg: -1.000000 ms
+  min: -1.000000 ms
+  max: -1.000000 ms
+
+---------------- running HYB ----------------
+GPU SpMV (HYB - ELL + COO):
+  ELL width K:            2
+  ELL total slots:        2000010
+  ELL memory (col+val):   15 MB
+  ELL NNZs (real):        1994134  (64.2%)
+  COO NNZs (overflow):    1111402  (35.8%)
+  ELL fill ratio:         0.997
+
+  [Kernel]
+  ELL: BLOCK=256 GRID=3907
+  COO: BLOCK=256 GRID=4342
+
+Kernel (HYBRID):
+  eff BW: 149.89 GB/s  (16.1% of peak 933 GB/s)
+
+  avg: 0.308419 ms
+  min: 0.302080 ms
+  max: 0.317440 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/webbase-1M.mtx,1000005,1000005,3105536,HYB,0.308419,0.302080,0.317440,0.000008695,20.138448,149.8877,16.06
+---------------- running cuSPARSE ----------------
+GPU SpMV (cuSPARSE - SPMV_ALG_DEFAULT / CSR):
+  workspace:  6072 bytes
+
+Kernel (cuSPARSE):
+  eff BW: 466.31 GB/s  (50.0% of peak 933 GB/s)
+
+  avg: 0.079012 ms
+  min: 0.077824 ms
+  max: 0.080896 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/webbase-1M.mtx,1000005,1000005,3105536,cuSPARSE,0.079012,0.077824,0.080896,0.000000499,78.609410,466.3145,49.97

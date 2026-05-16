@@ -1,0 +1,90 @@
+Running matrix=amazon0302  kernel=SCALAR
+Running matrix=amazon0302  kernel=S-V-ADAPTIVE
+Running matrix=amazon0302  kernel=LINE
+Running matrix=amazon0302  kernel=FLAT
+Running matrix=amazon0302  kernel=ACC
+Running matrix=amazon0302  kernel=ELL
+Running matrix=amazon0302  kernel=HYB
+Running matrix=amazon0302  kernel=cuSPARSE
+Done: amazon0302
+Running matrix=ASIC_680k  kernel=SCALAR
+Running matrix=ASIC_680k  kernel=S-V-ADAPTIVE
+Running matrix=ASIC_680k  kernel=LINE
+Running matrix=ASIC_680k  kernel=FLAT
+Running matrix=ASIC_680k  kernel=ACC
+Running matrix=ASIC_680k  kernel=ELL
+Running matrix=ASIC_680k  kernel=HYB
+Running matrix=ASIC_680k  kernel=cuSPARSE
+Done: ASIC_680k
+Running matrix=cage13  kernel=SCALAR
+Running matrix=cage13  kernel=S-V-ADAPTIVE
+Running matrix=cage13  kernel=LINE
+Running matrix=cage13  kernel=FLAT
+Running matrix=cage13  kernel=ACC
+Running matrix=cage13  kernel=ELL
+Running matrix=cage13  kernel=HYB
+Running matrix=cage13  kernel=cuSPARSE
+Done: cage13
+Running matrix=cit-Patents  kernel=SCALAR
+Running matrix=cit-Patents  kernel=S-V-ADAPTIVE
+Running matrix=cit-Patents  kernel=LINE
+Running matrix=cit-Patents  kernel=FLAT
+Running matrix=cit-Patents  kernel=ACC
+Running matrix=cit-Patents  kernel=ELL
+Running matrix=cit-Patents  kernel=HYB
+Running matrix=cit-Patents  kernel=cuSPARSE
+Done: cit-Patents
+Running matrix=crankseg_2  kernel=SCALAR
+Running matrix=crankseg_2  kernel=S-V-ADAPTIVE
+Running matrix=crankseg_2  kernel=LINE
+Running matrix=crankseg_2  kernel=FLAT
+Running matrix=crankseg_2  kernel=ACC
+Running matrix=crankseg_2  kernel=ELL
+Running matrix=crankseg_2  kernel=HYB
+Running matrix=crankseg_2  kernel=cuSPARSE
+Done: crankseg_2
+Running matrix=parabolic_fem  kernel=SCALAR
+Running matrix=parabolic_fem  kernel=S-V-ADAPTIVE
+Running matrix=parabolic_fem  kernel=LINE
+Running matrix=parabolic_fem  kernel=FLAT
+Running matrix=parabolic_fem  kernel=ACC
+Running matrix=parabolic_fem  kernel=ELL
+Running matrix=parabolic_fem  kernel=HYB
+Running matrix=parabolic_fem  kernel=cuSPARSE
+Done: parabolic_fem
+Running matrix=poisson3Da  kernel=SCALAR
+Running matrix=poisson3Da  kernel=S-V-ADAPTIVE
+Running matrix=poisson3Da  kernel=LINE
+Running matrix=poisson3Da  kernel=FLAT
+Running matrix=poisson3Da  kernel=ACC
+Running matrix=poisson3Da  kernel=ELL
+Running matrix=poisson3Da  kernel=HYB
+Running matrix=poisson3Da  kernel=cuSPARSE
+Done: poisson3Da
+Running matrix=roadNet-CA  kernel=SCALAR
+Running matrix=roadNet-CA  kernel=S-V-ADAPTIVE
+Running matrix=roadNet-CA  kernel=LINE
+Running matrix=roadNet-CA  kernel=FLAT
+Running matrix=roadNet-CA  kernel=ACC
+Running matrix=roadNet-CA  kernel=ELL
+Running matrix=roadNet-CA  kernel=HYB
+Running matrix=roadNet-CA  kernel=cuSPARSE
+Done: roadNet-CA
+Running matrix=thermal2  kernel=SCALAR
+Running matrix=thermal2  kernel=S-V-ADAPTIVE
+Running matrix=thermal2  kernel=LINE
+Running matrix=thermal2  kernel=FLAT
+Running matrix=thermal2  kernel=ACC
+Running matrix=thermal2  kernel=ELL
+Running matrix=thermal2  kernel=HYB
+Running matrix=thermal2  kernel=cuSPARSE
+Done: thermal2
+Running matrix=webbase-1M  kernel=SCALAR
+Running matrix=webbase-1M  kernel=S-V-ADAPTIVE
+Running matrix=webbase-1M  kernel=LINE
+Running matrix=webbase-1M  kernel=FLAT
+Running matrix=webbase-1M  kernel=ACC
+Running matrix=webbase-1M  kernel=ELL
+Running matrix=webbase-1M  kernel=HYB
+Running matrix=webbase-1M  kernel=cuSPARSE
+Done: webbase-1M

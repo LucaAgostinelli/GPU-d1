@@ -1,0 +1,128 @@
+---------------- running SCALAR ----------------
+Kernel (SCALAR):
+  eff BW: 363.24 GB/s  (38.9% of peak 933 GB/s)
+
+  avg: 0.229540 ms
+  min: 0.227328 ms
+  max: 0.231424 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/thermal2.mtx,1228045,1228045,8580313,SCALAR,0.229540,0.227328,0.231424,0.000000745,74.761010,363.2444,38.93
+---------------- running S-V-ADAPTIVE ----------------
+GPU SpMV (S-V-ADAPTIVE - two-kernel):
+  SHORT_THRESHOLD = 32
+  short rows (scalar kernel): 1228045  (100.0%)
+  long  rows (vector   kernel): 0  (0.0%)
+Kernel (S-V-ADAPTIVE):
+  eff BW: 462.37 GB/s  (49.6% of peak 933 GB/s)
+
+  avg: 0.190956 ms
+  min: 0.189440 ms
+  max: 0.192512 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/thermal2.mtx,1228045,1228045,8580313,S-V-ADAPTIVE,0.190956,0.189440,0.192512,0.000000555,89.867124,462.3653,49.55
+---------------- running LINE ----------------
+GPU SpMV (LINE-ENHANCE):
+  avg NNZ/row: 6.99 --> V=1, rows_per_wg=512
+  THREADS=512, R=2, N_SHARED=1024, WGS=2399
+Kernel (LINE-ENHANCE):
+  eff BW: 452.11 GB/s  (48.5% of peak 933 GB/s)
+
+  avg: 0.184423 ms
+  min: 0.182272 ms
+  max: 0.187392 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/thermal2.mtx,1228045,1228045,8580313,LINE,0.184423,0.182272,0.187392,0.000001226,93.050583,452.1087,48.45
+---------------- running FLAT ----------------
+GPU SpMV (FLAT):
+  WGS (blocks):            8380
+  N (NNZ per WG):          1024 (R=4, THREADS=256)
+
+  [Preprocessing]
+  time:                    0.141312 ms
+
+  [Kernel]
+  avg:                     0.143893 ms
+  min:                     0.142336 ms
+  max:                     0.145408 ms
+
+  variance:                0.000001 ms*ms
+
+  [End-to-end]
+  preprocess + avg kernel: 0.285205 ms
+  preprocess weight on total time: 49.547600 %
+Kernel (FLAT (end-to-end)):
+  eff BW: 309.81 GB/s  (33.2% of peak 933 GB/s)
+
+  avg: 0.285205 ms
+  min: 0.283648 ms
+  max: 0.286720 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/thermal2.mtx,1228045,1228045,8580313,FLAT,0.285205,0.283648,0.286720,0.000000609,60.169542,309.8067,33.20
+---------------- running ACC ----------------
+  [ACC -> LINE]
+GPU SpMV (LINE-ENHANCE):
+  avg NNZ/row: 6.99 --> V=1, rows_per_wg=512
+  THREADS=512, R=2, N_SHARED=1024, WGS=2399
+Kernel (LINE-ENHANCE):
+  eff BW: 506.66 GB/s  (54.3% of peak 933 GB/s)
+
+  avg: 0.164567 ms
+  min: 0.161792 ms
+  max: 0.166912 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/thermal2.mtx,1228045,1228045,8580313,ACC,0.164567,0.161792,0.166912,0.000001363,104.277438,506.6571,54.30
+---------------- running ELL ----------------
+GPU SpMV (ELL):
+  max_col (padded cols):   11
+  ELL total slots:         13508495
+  ELL memory (col+val):    108.1 MB
+  fill ratio:              0.635  (OK)
+Kernel (ELL):
+  eff BW: 687.22 GB/s  (73.6% of peak 933 GB/s)
+
+  avg: 0.171551 ms
+  min: 0.169984 ms
+  max: 0.173056 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/thermal2.mtx,1228045,1228045,8580313,ELL,0.171551,0.169984,0.173056,0.000000333,100.032331,687.2152,73.65
+---------------- running HYB ----------------
+GPU SpMV (HYB - ELL + COO):
+  ELL width K:            7
+  ELL total slots:        8596315
+  ELL memory (col+val):   65 MB
+  ELL NNZs (real):        8253441  (96.2%)
+  COO NNZs (overflow):    326872  (3.8%)
+  ELL fill ratio:         0.960
+
+  [Kernel]
+  ELL: BLOCK=256 GRID=4798
+  COO: BLOCK=256 GRID=1277
+
+Kernel (HYBRID):
+  eff BW: 528.59 GB/s  (56.6% of peak 933 GB/s)
+
+  avg: 0.161055 ms
+  min: 0.158720 ms
+  max: 0.163840 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/thermal2.mtx,1228045,1228045,8580313,HYB,0.161055,0.158720,0.163840,0.000000920,106.551597,528.5929,56.65
+---------------- running cuSPARSE ----------------
+GPU SpMV (cuSPARSE - SPMV_ALG_DEFAULT / CSR):
+  workspace:  16764 bytes
+
+Kernel (cuSPARSE):
+  eff BW: 473.57 GB/s  (50.8% of peak 933 GB/s)
+
+  avg: 0.176067 ms
+  min: 0.174080 ms
+  max: 0.178176 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/thermal2.mtx,1228045,1228045,8580313,cuSPARSE,0.176067,0.174080,0.178176,0.000000950,97.466646,473.5652,50.75

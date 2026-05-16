@@ -1,0 +1,129 @@
+---------------- running SCALAR ----------------
+Kernel (SCALAR):
+  eff BW: 125.94 GB/s  (13.5% of peak 933 GB/s)
+
+  avg: 0.023695 ms
+  min: 0.023552 ms
+  max: 0.024576 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/poisson3Da.mtx,13514,13514,352762,SCALAR,0.023695,0.023552,0.024576,0.000000128,29.774816,125.9433,13.50
+---------------- running S-V-ADAPTIVE ----------------
+GPU SpMV (S-V-ADAPTIVE - two-kernel):
+  SHORT_THRESHOLD = 32
+  short rows (scalar kernel): 11902  (88.1%)
+  long  rows (vector   kernel): 1612  (11.9%)
+Kernel (S-V-ADAPTIVE):
+  eff BW: 146.60 GB/s  (15.7% of peak 933 GB/s)
+
+  avg: 0.020726 ms
+  min: 0.020480 ms
+  max: 0.021504 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/poisson3Da.mtx,13514,13514,352762,S-V-ADAPTIVE,0.020726,0.020480,0.021504,0.000000191,34.040904,146.5964,15.71
+---------------- running LINE ----------------
+GPU SpMV (LINE-ENHANCE):
+  avg NNZ/row: 26.10 --> V=4, rows_per_wg=128
+  THREADS=512, R=2, N_SHARED=1024, WGS=106
+Kernel (LINE-ENHANCE):
+  eff BW: 139.24 GB/s  (14.9% of peak 933 GB/s)
+
+  avg: 0.021432 ms
+  min: 0.020480 ms
+  max: 0.022528 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/poisson3Da.mtx,13514,13514,352762,LINE,0.021432,0.020480,0.022528,0.000000151,32.918678,139.2414,14.92
+---------------- running FLAT ----------------
+GPU SpMV (FLAT):
+  WGS (blocks):            345
+  N (NNZ per WG):          1024 (R=4, THREADS=256)
+
+  [Preprocessing]
+  time:                    0.093184 ms
+
+  [Kernel]
+  avg:                     0.011950 ms
+  min:                     0.011264 ms
+  max:                     0.012288 ms
+
+  variance:                0.000000 ms*ms
+
+  [End-to-end]
+  preprocess + avg kernel: 0.105134 ms
+  preprocess weight on total time: 88.633499 %
+Kernel (FLAT (end-to-end)):
+  eff BW: 28.93 GB/s  (3.1% of peak 933 GB/s)
+
+  avg: 0.105134 ms
+  min: 0.104448 ms
+  max: 0.105472 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/poisson3Da.mtx,13514,13514,352762,FLAT,0.105134,0.104448,0.105472,0.000000232,6.710708,28.9258,3.10
+---------------- running ACC ----------------
+  [ACC -> LINE]
+GPU SpMV (LINE-ENHANCE):
+  avg NNZ/row: 26.10 --> V=4, rows_per_wg=128
+  THREADS=512, R=2, N_SHARED=1024, WGS=106
+Kernel (LINE-ENHANCE):
+  eff BW: 153.63 GB/s  (16.5% of peak 933 GB/s)
+
+  avg: 0.019425 ms
+  min: 0.018432 ms
+  max: 0.020480 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/poisson3Da.mtx,13514,13514,352762,ACC,0.019425,0.018432,0.020480,0.000000155,36.319853,153.6279,16.46
+---------------- running ELL ----------------
+GPU SpMV (ELL):
+  max_col (padded cols):   110
+  ELL total slots:         1486540
+  ELL memory (col+val):    11.9 MB
+  fill ratio:              0.237  (WARNING: low fill, ELL wastes memory)
+  [ELL] fill ratio 0.237 < threshold 0.500 - consider HYB instead
+Kernel (ELL):
+  eff BW: 575.60 GB/s  (61.7% of peak 933 GB/s)
+
+  avg: 0.020849 ms
+  min: 0.020480 ms
+  max: 0.021504 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/poisson3Da.mtx,13514,13514,352762,ELL,0.020849,0.020480,0.021504,0.000000241,33.840272,575.5975,61.69
+---------------- running HYB ----------------
+GPU SpMV (HYB - ELL + COO):
+  ELL width K:            24
+  ELL total slots:        324336
+  ELL memory (col+val):   2 MB
+  ELL NNZs (real):        286001  (81.1%)
+  COO NNZs (overflow):    66761  (18.9%)
+  ELL fill ratio:         0.882
+
+  [Kernel]
+  ELL: BLOCK=256 GRID=53
+  COO: BLOCK=256 GRID=261
+
+Kernel (HYBRID):
+  eff BW: 181.72 GB/s  (19.5% of peak 933 GB/s)
+
+  avg: 0.022221 ms
+  min: 0.021504 ms
+  max: 0.022528 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/poisson3Da.mtx,13514,13514,352762,HYB,0.022221,0.021504,0.022528,0.000000220,31.750594,181.7224,19.47
+---------------- running cuSPARSE ----------------
+GPU SpMV (cuSPARSE - SPMV_ALG_DEFAULT / CSR):
+  workspace:  696 bytes
+
+Kernel (cuSPARSE):
+  eff BW: 160.13 GB/s  (17.2% of peak 933 GB/s)
+
+  avg: 0.018637 ms
+  min: 0.018432 ms
+  max: 0.019456 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/poisson3Da.mtx,13514,13514,352762,cuSPARSE,0.018637,0.018432,0.019456,0.000000167,37.856468,160.1276,17.16

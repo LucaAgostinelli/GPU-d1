@@ -1,0 +1,129 @@
+---------------- running SCALAR ----------------
+Kernel (SCALAR):
+  eff BW: 286.33 GB/s  (30.7% of peak 933 GB/s)
+
+  avg: 0.033987 ms
+  min: 0.032768 ms
+  max: 0.034816 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/amazon0302.mtx,262111,262111,823251,SCALAR,0.033987,0.032768,0.034816,0.000000286,48.445657,286.3291,30.69
+---------------- running S-V-ADAPTIVE ----------------
+GPU SpMV (S-V-ADAPTIVE - two-kernel):
+  SHORT_THRESHOLD = 32
+  short rows (scalar kernel): 262004  (100.0%)
+  long  rows (vector   kernel): 107  (0.0%)
+Kernel (S-V-ADAPTIVE):
+  eff BW: 288.65 GB/s  (30.9% of peak 933 GB/s)
+
+  avg: 0.037345 ms
+  min: 0.035840 ms
+  max: 0.038912 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/amazon0302.mtx,262111,262111,823251,S-V-ADAPTIVE,0.037345,0.035840,0.038912,0.000000344,44.088585,288.6517,30.93
+---------------- running LINE ----------------
+GPU SpMV (LINE-ENHANCE):
+  avg NNZ/row: 3.14 --> V=1, rows_per_wg=512
+  THREADS=512, R=2, N_SHARED=1024, WGS=512
+Kernel (LINE-ENHANCE):
+  eff BW: 357.53 GB/s  (38.3% of peak 933 GB/s)
+
+  avg: 0.027218 ms
+  min: 0.026624 ms
+  max: 0.027648 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/amazon0302.mtx,262111,262111,823251,LINE,0.027218,0.026624,0.027648,0.000000257,60.493355,357.5347,38.32
+---------------- running FLAT ----------------
+GPU SpMV (FLAT):
+  WGS (blocks):            804
+  N (NNZ per WG):          1024 (R=4, THREADS=256)
+
+  [Preprocessing]
+  time:                    0.114688 ms
+
+  [Kernel]
+  avg:                     0.032819 ms
+  min:                     0.031744 ms
+  max:                     0.033792 ms
+
+  variance:                0.000000 ms*ms
+
+  [End-to-end]
+  preprocess + avg kernel: 0.147507 ms
+  preprocess weight on total time: 77.750778 %
+Kernel (FLAT (end-to-end)):
+  eff BW: 73.12 GB/s  (7.8% of peak 933 GB/s)
+
+  avg: 0.147507 ms
+  min: 0.146432 ms
+  max: 0.148480 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/amazon0302.mtx,262111,262111,823251,FLAT,0.147507,0.146432,0.148480,0.000000258,11.162180,73.1234,7.84
+---------------- running ACC ----------------
+  [ACC -> LINE]
+GPU SpMV (LINE-ENHANCE):
+  avg NNZ/row: 3.14 --> V=1, rows_per_wg=512
+  THREADS=512, R=2, N_SHARED=1024, WGS=512
+Kernel (LINE-ENHANCE):
+  eff BW: 283.00 GB/s  (30.3% of peak 933 GB/s)
+
+  avg: 0.034386 ms
+  min: 0.033792 ms
+  max: 0.035840 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/amazon0302.mtx,262111,262111,823251,ACC,0.034386,0.033792,0.035840,0.000000318,47.883004,283.0036,30.33
+---------------- running ELL ----------------
+GPU SpMV (ELL):
+  max_col (padded cols):   142
+  ELL total slots:         37219762
+  ELL memory (col+val):    297.8 MB
+  fill ratio:              0.022  (WARNING: low fill, ELL wastes memory)
+  [ELL] fill ratio 0.022 < threshold 0.500 - consider HYB instead
+Kernel (ELL):
+  eff BW: 782.35 GB/s  (83.8% of peak 933 GB/s)
+
+  avg: 0.383273 ms
+  min: 0.380928 ms
+  max: 0.387072 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/amazon0302.mtx,262111,262111,823251,ELL,0.383273,0.380928,0.387072,0.000001103,4.295897,782.3533,83.84
+---------------- running HYB ----------------
+GPU SpMV (HYB - ELL + COO):
+  ELL width K:            4
+  ELL total slots:        1048444
+  ELL memory (col+val):   7 MB
+  ELL NNZs (real):        716698  (87.1%)
+  COO NNZs (overflow):    106553  (12.9%)
+  ELL fill ratio:         0.684
+
+  [Kernel]
+  ELL: BLOCK=256 GRID=1024
+  COO: BLOCK=256 GRID=417
+
+Kernel (HYBRID):
+  eff BW: 345.87 GB/s  (37.1% of peak 933 GB/s)
+
+  avg: 0.036475 ms
+  min: 0.035840 ms
+  max: 0.037888 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/amazon0302.mtx,262111,262111,823251,HYB,0.036475,0.035840,0.037888,0.000000266,45.140678,345.8679,37.07
+---------------- running cuSPARSE ----------------
+GPU SpMV (cuSPARSE - SPMV_ALG_DEFAULT / CSR):
+  workspace:  1612 bytes
+
+Kernel (cuSPARSE):
+  eff BW: 244.99 GB/s  (26.3% of peak 933 GB/s)
+
+  avg: 0.039721 ms
+  min: 0.038912 ms
+  max: 0.040960 ms
+
+[ERROR CHECKING] OK!
+RESULT_CSV,/home/luca.agostinelli/Deliverable_1/matrices/amazon0302.mtx,262111,262111,823251,cuSPARSE,0.039721,0.038912,0.040960,0.000000236,41.451694,244.9925,26.26
