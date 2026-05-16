@@ -17,7 +17,7 @@ Several kernel strategies and sparse formats are compared across 10 SuiteSparse 
 | **Nsight Compute metrics** (coalescing, occupancy, DRAM, …) | `csv/ncu_results.csv` and pivot CSVs `csv/ncu_results_pivot_*.csv` |
 | **Raw benchmark stdout** (one file per matrix) | `outputs/<matrix>.out` |
 | **Raw stderr** | `outputs/<matrix>.err` |
-| **Report (LaTeX)** | `Report.tex` |
+| **Report** | `AgostinelliLuca-Deliverable1.pdf` |
 | **Matrix statistics** | `csv/matrix_stats.csv` |
 
 ---
